@@ -19,10 +19,10 @@ public:
 	void afficher(ostream& os, char couleur = ' ') {
 		Vilain::afficher(os, couleur);
 		changerCouleur(os, couleur);
-		os << "Ennemi : " << Heros::getEnnemi() << "\nAlliés : \n";
+		os << "Ennemi : " << Heros::getEnnemi() << "\nAlliÃ©s : \n";
 		for (auto&& elem : Heros::getAllies())
 			os << "\t" << elem << endl;
-		os << "Mission spéciale : " << missionSpeciale_ << endl;
+		os << "Mission spÃ©ciale : " << missionSpeciale_ << endl;
 		changerCouleur(os);
 	}
 
