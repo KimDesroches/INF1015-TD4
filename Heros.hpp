@@ -14,19 +14,11 @@ class Heros: virtual public Personnage {
 public:
 	Heros(const string& nom = " ", const string& parution = " ", const string& ennemi = " ", vector<string> allies = {}) : Personnage(nom, parution), ennemi_(ennemi), allies_(allies) {};
 
-	bool estAllie(const string& allie) {
-		for (auto elem : allies_)
-			if (elem == allie)
-				return true;
-		return false;
-	}
-
 	void ajouterAllies(const string& allie) { 
-		if(!estAllie(allie))
-			allies_.push_back(allie); 
+		allies_.push_back(allie); 
 	}
 
-	void afficher(ostream& os, char couleur = 'w') {
+	void afficher(ostream& os, char couleur = ' ') {
 		Personnage::afficher(os, couleur);
 		changerCouleur(os, couleur);
 		os << "Ennemi: " << ennemi_ << "\nAlliés:\n ";

@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////
+﻿////////////////////////////////////////////////////////////////////////////////
 /// \file   main.cpp
 /// \authors Kim Desroches et Raissa Oumarou Petitot
 ///
@@ -11,9 +11,6 @@
 #include "cppitertools/range.hpp"
 #include <string>
 
-#include "Personnage.hpp"
-#include "Heros.hpp"
-#include "Vilain.hpp"
 #include "VilainHeros.hpp"
 
 using UInt8  = uint8_t;
@@ -91,39 +88,38 @@ int main()
 	//TODO: Votre code pour le main commence ici
 	vector<Heros> listeHeros;
 	vector<Vilain> listeVilains;
-	vector<Personnage> listePersonnages;
-	
-	int nHeros = lireUint16(fichierHeros);
+	vector<shared_ptr<Personnage>> listePersonnages;
+	Heros hero;
+	Vilain vilain;
+
+	int nHeros = lireUint16(fichierHeros);		
 	for ([[maybe_unused]] int i : iter::range(nHeros)) {
-		listeHeros.push_back(lireHero(fichierHeros));
+		hero = lireHero(fichierHeros);
+		listeHeros.push_back(hero);
+		hero.afficher(cout, 'b');
+		cout << trait << endl;
+		listePersonnages.push_back(make_shared<Heros>(hero));
 	}
 	
 	int nVilains = lireUint16(fichierVilains);
 	for ([[maybe_unused]] int i : iter::range(nVilains)) {
-		listeVilains.push_back(lireVilain(fichierVilains));
-	}
-
-	for (auto&& hero : listeHeros) {
-		hero.afficher(cout, 'b');
-		cout << endl;
-		listePersonnages.push_back(hero);
-	}
-
-	for (auto&& vilain : listeVilains) {
+		vilain = lireVilain(fichierVilains);
+		listeVilains.push_back(vilain);
 		vilain.afficher(cout, 'r');
-		cout << endl;
-		listePersonnages.push_back(vilain);
+		cout << trait << endl;
+		listePersonnages.push_back(make_shared<Vilain>(vilain));
+
 	}
 
 	//VilainHeros
 	VilainHeros vilainHeros(listeVilains[0], listeHeros[1]);
 	vilainHeros.afficher(cout, 'p');
-	cout << endl;
-	listePersonnages.push_back(vilainHeros);
+	cout << trait << endl;
+	listePersonnages.push_back(make_shared<VilainHeros>(vilainHeros));
 
 	for (auto&& personnage : listePersonnages) {
-			personnage.afficher(cout);
-			cout << endl;
-		}
-
+		personnage->afficher(cout);
+		cout << trait << endl;
+	}
+	
 }

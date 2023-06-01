@@ -14,7 +14,7 @@ class Vilain : virtual public Personnage {
 public:
 	Vilain(const string& nom = " ", const string& parution = " ", const string& objectif = " ") : Personnage(nom, parution), objectif_(objectif) {}
 
-	void afficher(ostream& os, char couleur = 'w') {
+	void afficher(ostream& os, char couleur = ' ') {
 		Personnage::afficher(os, couleur);
 		changerCouleur(os, couleur);
 		os << "Objectif: " << objectif_ << endl;

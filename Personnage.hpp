@@ -20,7 +20,7 @@ public:
 	const string& getNom() const { return nom_; }
 	const string& getParution() const { return parution_; }
 
-	void changerCouleur(ostream& os, char couleur = 'w') {
+	void changerCouleur(ostream& os, char couleur = ' ') {
 		switch (couleur) {
 		case 'r':
 			os << "\033[91m";
@@ -31,15 +31,12 @@ public:
 		case 'p':
 			os << "\033[35m";
 			break;
-		case 'w':
-			os << "\033[0m";
-			break;
 		default:
 			os << "\033[0m";
 		}
 	}
 
-	void afficher(ostream& os, char couleur = 'w') {
+	void afficher(ostream& os, char couleur = ' ') {
 		changerCouleur(os, couleur);
 		os << "Nom: " << nom_ << "\nParution: " << parution_ << endl;
 		changerCouleur(os);
