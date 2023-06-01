@@ -16,6 +16,7 @@ public:
 	VilainHeros(Vilain v, Heros h) : Personnage(v.getNom() + "-" + h.getNom(), v.getParution() + "-" + h.getParution()),
 		Vilain(v.getNom(), v.getParution(), v.getObjectif()), Heros(h.getNom(), h.getParution(),h.getEnnemi(), h.getAllies()), missionSpeciale_(v.getObjectif() + " dans le monde de " + h.getParution()) {};
 
+
 	void afficher(ostream& os, char couleur = ' ') {
 		Vilain::afficher(os, couleur);
 		changerCouleur(os, couleur);
